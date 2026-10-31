@@ -5,17 +5,12 @@ Timeshift. The Rust crate models rsync-style and Btrfs snapshot modes, retention
 levels, schedules, and snapshot metadata. Kernel and filesystem integrations are
 declared as sibling path dependencies in `Cargo.toml`.
 
-This repository's current source and tests determine implementation status;
-the declared modes do not imply that every backend is production-ready.
-
-## Principles
-- MODULARITY: Single responsibility per repository
-- LOOSE COUPLING: Minimal dependencies between repos
-- INTERFACE SEGREGATION: Clear, focused public APIs
-- DETERMINISTIC TESTING: Comprehensive test coverage
+The current manager models snapshots in memory: creation uses a fixed
+100 MiB size, restore returns a formatted status string, and listing reports
+the stored model entries. It does not invoke rsync, create Btrfs snapshots,
+write data to the configured snapshot path, or restore files. The tests cover
+the model and state transitions, not filesystem backup or recovery.
 
 ## License
-SPDX-License-Identifier: GPL-3.0-or-later
 
-## Copyright
-Copyright (C) 2026 SigmaOS Project
+Apache-2.0. See [`LICENSE`](LICENSE) and [`Cargo.toml`](Cargo.toml).
