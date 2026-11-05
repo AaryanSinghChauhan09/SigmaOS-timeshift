@@ -1,0 +1,16 @@
+[component]
+name = "SigmaOS-timeshift"
+tier = 2
+stability = "scaffold"
+language = "rust"
+description = "Automated system snapshot engine supporting Btrfs subvolumes and RSYNC retention policies"
+upstream = ["https://github.com/linuxmint/timeshift"]
+
+[contract]
+provides = ["system-snapshots", "timeshift-engine", "snapshot-retention"]
+depends_on = []
+
+[maturity]
+status = "Scaffold"
+test_evidence = "Compiles and passes AAA unit tests"
+next_milestone = "Hardware and runtime integration"
