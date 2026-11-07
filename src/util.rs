@@ -1,52 +1,55 @@
-//! timeshift model — system snapshot/restore tool.
+//! timeshift model — backup tool.
 
 #[derive(Debug, Clone)]
-pub struct Snapshot {
-    pub id: String,
+pub struct Backup {
     pub name: String,
-    pub date: String,
-    pub size: u64,
-    pub description: String,
+    pub source: String,
+    pub dest: String,
+    pub size_bytes: u64,
+    pub created: u64,
 }
 
 #[derive(Debug, Clone)]
 pub struct Model {
-    pub snapshots: Vec<Snapshot>,
-    pub next_id: u64,
+    pub backups: Vec<Backup>,
 }
 
 impl Default for Model {
-    fn default() -> Self { Self { snapshots: vec![], next_id: 1 } }
+    fn default() -> Self { Self { backups: vec![] } }
 }
 
 impl Model {
     pub fn new() -> Self { Self::default() }
 
-    pub fn create(&mut self, name: &str, date: &str) -> String {
-        let id = format!("{:x}", self.next_id);
-        self.next_id += 1;
-        self.snapshots.push(Snapshot { id: id.clone(), name: name.into(), date: date.into(), size: 0, description: String::new() });
+    pub fn create(&mut self, name: &str, source: &str, dest: &str, size_bytes: u64) -> usize {
+        let id = self.backups.len();
+        self.backups.push(Backup { name: name.into(), source: source.into(), dest: dest.into(), size_bytes, created: 0 });
         id
     }
 
-    pub fn delete(&mut self, id: &str) -> bool {
-        if let Some(pos) = self.snapshots.iter().position(|s| s.id == id) {
-            self.snapshots.remove(pos);
-            true
-        } else { false }
+    pub fn restore(&self, name: &str) -> Option<&Backup> {
+        self.backups.iter().find(|b| b.name == name)
     }
 
-    pub fn list(&self) -> &[Snapshot] { &self.snapshots }
+    pub fn delete(&mut self, name: &str) -> bool {
+        if let Some(i) = self.backups.iter().position(|b| b.name == name) {
+            self.backups.remove(i);
+            return true;
+        }
+        false
+    }
+
+    pub fn list(&self) -> &[Backup] { &self.backups }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     #[test]
-    fn snapshot_create_delete() {
-        let mut t = Model::new();
-        let id = t.create("before-update", "2024-01-01");
-        assert_eq!(t.list().len(), 1);
-        assert!(t.delete(&id));
+    fn backup_create_restore_delete() {
+        let mut m = Model::new();
+        m.create("home", "/home/user", "/mnt/backup", 1024);
+        assert!(m.restore("home").is_some());
+        assert!(m.delete("home"));
     }
 }
