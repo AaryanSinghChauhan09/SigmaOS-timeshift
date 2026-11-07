@@ -2,7 +2,6 @@
 name = "sigmaos_timeshift"
 version = "0.1.0"
 edition = "2021"
-description = "Automated system snapshot engine supporting Btrfs subvolumes and RSYNC retention policies"
 
 [lib]
 name = "sigmaos_timeshift"
