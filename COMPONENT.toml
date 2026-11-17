@@ -3,12 +3,12 @@ name = "SigmaOS-timeshift"
 tier = 2
 stability = "scaffold"
 language = "rust"
-description = "Automated system snapshot engine supporting Btrfs subvolumes and RSYNC retention policies"
+description = "System snapshot and restore tool using rsync-style and Btrfs snapshot modes, inspired by Linux Mint Timeshift"
 upstream = ["https://github.com/linuxmint/timeshift"]
 
 [contract]
 provides = ["system-snapshots", "timeshift-engine", "snapshot-retention"]
-depends_on = []
+depends_on = ["SigmaOS-system"]
 
 [maturity]
 status = "Scaffold"
