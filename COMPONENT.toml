@@ -1,7 +1,7 @@
 [component]
 name = "SigmaOS-timeshift"
 tier = 2
-stability = "scaffold"
+stability = "beta"
 language = "rust"
 description = "System snapshot and restore tool using rsync-style and Btrfs snapshot modes, inspired by Linux Mint Timeshift"
 upstream = ["https://github.com/linuxmint/timeshift"]
@@ -11,6 +11,6 @@ provides = ["system-snapshots", "timeshift-engine", "snapshot-retention"]
 depends_on = ["SigmaOS-system"]
 
 [maturity]
-status = "Scaffold"
+status = "Implemented"
 test_evidence = "Compiles and passes AAA unit tests"
 next_milestone = "Hardware and runtime integration"
