@@ -7,6 +7,8 @@
 
 #![forbid(unsafe_code)]
 
+pub mod sigmasnapshotmanager;
+
 use std::fmt;
 /// Errors for `PlanError` operations. Fail-fast: invalid input is rejected.
 #[derive(Debug, Clone, PartialEq, Eq)]
