@@ -8,3 +8,6 @@ description = "SigmaOS timeshift component inspired by Linux Mint / Omarchy / Ar
 [lib]
 name = "sigmaos_timeshift"
 path = "src/lib.rs"
+
+[dependencies.sigmaos-runtime-support]
+git = "https://github.com/AaryanSinghChauhan09/SigmaOS-runtime-support"

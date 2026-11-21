@@ -133,3 +133,9 @@ impl Component {
         Self { name: "SigmaOS Component" }
     }
 }
+
+/// Module extracted from the SigmaOS-system monolith.
+pub mod snapshot_schedule;
+
+/// Module extracted from the SigmaOS-system monolith.
+pub mod snapshot;
