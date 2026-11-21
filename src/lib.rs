@@ -12,6 +12,9 @@ pub mod sigmatimeshift;
 
 pub mod sigmasnapshotmanager;
 
+/// Generic filesystem/volume snapshot management (btrfs/zfs/snapper-style).
+pub mod sigmasnapshot;
+
 use std::fmt;
 /// Errors for `PlanError` operations. Fail-fast: invalid input is rejected.
 #[derive(Debug, Clone, PartialEq, Eq)]
