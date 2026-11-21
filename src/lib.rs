@@ -7,6 +7,9 @@
 
 #![forbid(unsafe_code)]
 
+/// Timeshift snapshot module.
+pub mod sigmatimeshift;
+
 pub mod sigmasnapshotmanager;
 
 use std::fmt;
