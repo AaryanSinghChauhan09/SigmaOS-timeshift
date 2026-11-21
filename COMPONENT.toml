@@ -8,7 +8,7 @@ upstream = ["https://github.com/linuxmint/timeshift"]
 
 [contract]
 provides = ["system-snapshots", "timeshift-engine", "snapshot-retention"]
-depends_on = ["SigmaOS-system"]
+depends_on = []
 
 [maturity]
 status = "Implemented"
